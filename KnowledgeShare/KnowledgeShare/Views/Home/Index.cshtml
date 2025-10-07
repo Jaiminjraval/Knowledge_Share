@@ -1,0 +1,96 @@
+﻿@* @{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
+
+
+@{
+    ViewData["Title"] = "KnowledgeShare - Home";
+}
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(to right, #1e3c72, #2a5298);
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+
+    .hero {
+        text-align: center;
+        padding: 120px 20px;
+    }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+
+    .features {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin: 80px auto;
+        flex-wrap: wrap;
+        max-width: 1000px;
+        padding: 0 20px;
+    }
+
+    .feature-card {
+        background: #ffffff10;
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 15px;
+        width: 280px;
+        text-align: center;
+        transition: 0.3s ease;
+    }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: #ffffff20;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .feature-card p {
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+</style>
+
+<div class="hero">
+    <h1>Welcome to <span style="color:#ff9800;">KnowledgeShare</span></h1>
+    <p>Empower your learning journey! Share knowledge, explore topics, and grow together with a community that believes in collaboration and innovation.</p>
+</div>
+
+<div class="features">
+    <div class="feature-card">
+        <h3>📚 Learn</h3>
+        <p>Discover curated resources and expert articles across various domains.</p>
+    </div>
+    <div class="feature-card">
+        <h3>🤝 Share</h3>
+        <p>Contribute your insights, projects, and tutorials to help others grow.</p>
+    </div>
+    <div class="feature-card">
+        <h3>🚀 Grow</h3>
+        <p>Enhance your skills and build connections with like-minded learners.</p>
+    </div>
+</div>

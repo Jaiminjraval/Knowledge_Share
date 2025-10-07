@@ -1,0 +1,42 @@
+﻿@model IEnumerable<KnowledgeShare.Models.SessionRequest>
+@{
+    ViewData["Title"] = "My Requests";
+    var allUsers = ViewBag.Users as List<KnowledgeShare.Data.ApplicationUser> ?? new List<KnowledgeShare.Data.ApplicationUser>();
+}
+
+<h1>My Requests</h1>
+<p>This page shows session requests you have received from learners.</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Learner</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var request in Model)
+        {
+            var learner = allUsers.FirstOrDefault(u => u.Id == request.LearnerId);
+            <tr>
+                <td>@(learner?.Name ?? "Unknown Learner")</td>
+                <td>@request.Status</td>
+                <td>
+                    @if (request.Status == RequestStatus.Pending)
+                    {
+                        <form asp-action="Approve" method="post" class="d-inline">
+                            <input type="hidden" name="requestId" value="@request.Id" />
+                            <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                        </form>
+                        <form asp-action="Decline" method="post" class="d-inline">
+                            <input type="hidden" name="requestId" value="@request.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger">Decline</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
