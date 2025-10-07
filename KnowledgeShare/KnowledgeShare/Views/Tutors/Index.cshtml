@@ -1,0 +1,71 @@
+﻿@model IEnumerable<KnowledgeShare.Data.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Find a Tutor";
+    // We cast the ViewBag data once here for easier use in the loop.
+    var allSubjects = ViewBag.Subjects as List<KnowledgeShare.Models.Subject> ?? new List<KnowledgeShare.Models.Subject>();
+}
+
+<div class="text-center">
+    <h1 class="display-4">Find a Tutor</h1>
+    <p>Search for tutors by the subject they teach.</p>
+</div>
+
+<!-- Search Form -->
+<div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+        <form asp-controller="Tutors" asp-action="Index" method="get">
+            <div class="input-group">
+                <input type="text" name="searchString" class="form-control" placeholder="Enter subject (e.g., C#, Math)..." />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Tutor List -->
+<div class="row">
+    @foreach (var tutor in Model)
+    {
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">@tutor.Name</h5>
+                    <small class="text-muted">@tutor.Email</small>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">@tutor.Bio</p>
+                    <h6>Subjects:</h6>
+                    <ul>
+                        @foreach (var subject in allSubjects.Where(s => s.TutorId == tutor.Id))
+                        {
+                            <li>@subject.Name</li>
+                        }
+                    </ul>
+                </div>
+                <div class="card-footer text-center">
+                    <form asp-controller="SessionRequests" asp-action="Create" method="post">
+                        <input type="hidden" name="tutorId" value="@tutor.Id" />
+                        <button type="submit" class="btn btn-success">Request Session</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger mt-3" role="alert">
+        @TempData["ErrorMessage"]
+    </div>
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success mt-3" role="alert">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
