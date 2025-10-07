@@ -1,0 +1,51 @@
+﻿@model KnowledgeShare.Data.ApplicationUser
+@{
+    ViewData["Title"] = "My Profile";
+    var mySubjects = ViewBag.MySubjects as List<KnowledgeShare.Models.Subject> ?? new List<KnowledgeShare.Models.Subject>();
+}
+
+<h1>My Profile</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <h4>Account Details</h4>
+        <p><strong>Name:</strong> @Model.Name</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Role:</strong> @Model.Role</p>
+
+        <form asp-controller="Profile" asp-action="EditBio" method="post">
+            <div class="mb-3">
+                <label for="bio" class="form-label"><strong>My Bio</strong></label>
+                <textarea id="bio" name="bio" class="form-control" rows="4">@Model.Bio</textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Bio</button>
+        </form>
+    </div>
+
+    @if (Model.Role == "Tutor")
+    {
+        <div class="col-md-6">
+            <h4>My Subjects</h4>
+            <ul class="list-group mb-3">
+                @foreach (var subject in mySubjects)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @subject.Name
+                        <form asp-controller="Profile" asp-action="RemoveSubject" method="post">
+                            <input type="hidden" name="subjectId" value="@subject.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger">&times;</button>
+                        </form>
+                    </li>
+                }
+            </ul>
+            <form asp-controller="Profile" asp-action="AddSubject" method="post">
+                <div class="input-group">
+                    <input type="text" name="subjectName" class="form-control" placeholder="Add a new subject" required />
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </form>
+        </div>
+    }
+</div>
+
