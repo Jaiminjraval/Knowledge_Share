@@ -33,7 +33,6 @@ namespace KnowledgeShare.Controllers
                 return RedirectToAction("Index", "Tutors");
             }
 
-            // Prevent duplicate pending requests
             var existingRequest = await _context.SessionRequests
                 .FirstOrDefaultAsync(r => r.LearnerId == learner.Id && r.TutorId == tutorId && r.Status == RequestStatus.Pending);
 
@@ -78,7 +77,7 @@ namespace KnowledgeShare.Controllers
                 .Where(r => r.TutorId == currentUser.Id)
                 .ToListAsync();
 
-            ViewBag.Users = await _context.Users.ToListAsync(); // For getting learner names
+            ViewBag.Users = await _context.Users.ToListAsync(); 
             return View(requests);
         }
 
@@ -99,7 +98,7 @@ namespace KnowledgeShare.Controllers
 
             if (request == null || request.TutorId != currentUser.Id)
             {
-                return Forbid(); // Security check
+                return Forbid(); 
             }
 
             request.Status = newStatus;

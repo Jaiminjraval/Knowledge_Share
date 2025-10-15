@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KnowledgeShare.Controllers
 {
-    [Authorize] // All actions in this controller require login
+    [Authorize] 
     public class ProfileController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -74,7 +74,6 @@ namespace KnowledgeShare.Controllers
             var user = await _userManager.GetUserAsync(User);
             var subject = await _context.Subjects.FindAsync(subjectId);
 
-            // Security check: ensure the user owns this subject
             if (user != null && subject != null && subject.TutorId == user.Id)
             {
                 _context.Subjects.Remove(subject);

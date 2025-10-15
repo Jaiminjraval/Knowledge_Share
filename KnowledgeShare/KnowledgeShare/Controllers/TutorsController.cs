@@ -15,7 +15,6 @@ namespace KnowledgeShare.Controllers
             _context = context;
         }
 
-        // GET: Tutors
         public async Task<IActionResult> Index(string searchString)
         {
             var tutorsQuery = _context.Users.Where(u => u.Role == "Tutor");
@@ -33,7 +32,6 @@ namespace KnowledgeShare.Controllers
 
             var tutors = await tutorsQuery.ToListAsync();
 
-            // Pass all subjects to the view for efficient lookup
             ViewBag.Subjects = await _context.Subjects.ToListAsync();
 
             return View(tutors);
