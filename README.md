@@ -78,14 +78,15 @@ The application will open in your default web browser.
 
 
 ## Jaimin Raval                                                                
-Custom User Registration & Role System                                         
-Tutor Profile & Skill Management
-Session Request Creation Functionality
-Request Approval & Management System
-Tutor Discovery & Search Functionality
+1.Custom User Registration & Role System                                         
+2.Tutor Profile & Skill Management
+3.Session Request Creation Functionality
+4.Request Approval & Management System
+5.Tutor Discovery & Search Functionality
 
 
 ## Jay Varu
-Session Status Tracking
-Application Security & Authorization
-Duplicate Request Prevention
+1.Session Status Tracking
+2.Application Security
+3.Role based Action
+4.Duplicate Request Prevention
