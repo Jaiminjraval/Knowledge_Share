@@ -74,3 +74,18 @@ Follow these steps to set up and run the project on a local machine.
    Press F5 or click the green "Play" button (IIS Express) in the Visual Studio toolbar.
 
 The application will open in your default web browser.
+
+
+
+## Jaimin Raval                                                                
+Custom User Registration & Role System                                         
+Tutor Profile & Skill Management
+Session Request Creation Functionality
+Request Approval & Management System
+Tutor Discovery & Search Functionality
+
+
+## Jay Varu
+Session Status Tracking
+Application Security & Authorization
+Duplicate Request Prevention
